@@ -81,24 +81,34 @@ void m_update(T_Dorm* p, char* g, char* b, int sn, char* m) {
 
 void m_delete(T_Dorm* p) {
 
-	int i, index;
+        int i;
+        int index;
+        int j;
 
-	for (i = 0; i < MAX_STUDENTS; i++) {
-		if ( students[i] == p) {
-			index = i;
-			break;
-		}
-	}
+        for (i = 0; i < MAX_STUDENTS; i++) {
+                if ( students[i] == p) {
+                        index = i;
+                        break;
+                }
+        }
 
-		free(p);
-		students[index] = NULL;
-		_count --;
+        for(j = index ; j < _count - 1; j++) {
+                memcpy( &students[j], &students[j + 1], sizeof(T_Dorm));
+        }
 
 #ifdef DEBUG
-	printf("[Debug] m_delete \n");
+        printf("[Debug] remove blank \n");
+#endif
+
+        free(p);
+        _count --;
+
+#ifdef DEBUG
+        printf("[Debug] m_delete \n");
 #endif
 
 }
+
 
 char* m_to_string(T_Dorm* p) {
 	static char str[80];
