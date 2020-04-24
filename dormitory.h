@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_STUDENTS 5
+#define MAX_STUDENTS 60
 
 typedef struct st_dorm{
 	char name[20];
