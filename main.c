@@ -4,6 +4,8 @@
 // 애플리케이션용 함수 원형
 void create_record();
 void read_record();
+void update_record();
+void delete_record();
 void list_record();
 void search_name();
 void search_gender();
@@ -24,6 +26,12 @@ int main() {
 			case 2:
 				read_record();
 				break;
+			case 3:
+				update_record();
+				break;
+			case 4:
+				delete_record();
+				break;	
 			case 5:
 				list_record();
 				break;
@@ -89,6 +97,52 @@ void read_record() {
 		printf("Student Number : %d\n", m_getstudentnumber(p));
 		printf("Major : %s\n", m_getmajor(p));
 	}
+	else {
+		printf("No such student!\n");
+	}
+}
+
+void update_record() {
+
+	char name[20], gender[20], building[20], major[20];
+	int studentnumber;
+
+	printf("Enter a name to be updated > ");
+	scanf("%s", name);
+
+	T_Dorm* p = m_search_by_name(name);
+	if(p) {
+		printf("Enter a updated info.\n");
+		printf("Gender(남 or 여) > ");
+		scanf("%s", gender);
+		printf("Dormitory building(OO관) > ");
+		scanf("%s", building);
+		printf("Student Number(ex. 17, 18, 19) > ");
+		scanf("%d", &studentnumber);
+		printf("Major > ");
+		scanf("%s", major);
+		
+		m_update(p, gender, building, studentnumber, major);
+	}
+	else {
+		printf("No such student!\n");
+	}
+}
+
+void delete_record() {
+
+	char name[20];
+
+	printf("Enter a name > ");
+	scanf("%s" , name);
+
+	T_Dorm* p = m_search_by_name(name);
+
+	if (p) {
+		m_delete(p);
+		printf("The information of %s is deleted!\n", name);
+	}
+
 	else {
 		printf("No such student!\n");
 	}

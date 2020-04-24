@@ -65,6 +65,41 @@ T_Dorm* m_search_by_name(char* n) {
 	return NULL;
 }
 
+
+void m_update(T_Dorm* p, char* g, char* b, int sn, char* m) {
+
+	strcpy(p->gender, g);
+	strcpy(p->building, b);
+	p->studentNumber = sn;
+	strcpy(p->major, m);
+
+#ifdef DEBUG
+	printf("[Debug] m_update \n");
+#endif
+
+}
+
+void m_delete(T_Dorm* p) {
+
+	int i, index;
+
+	for (i = 0; i < MAX_STUDENTS; i++) {
+		if ( students[i] == p) {
+			index = i;
+			break;
+		}
+	}
+
+		free(p);
+		students[index] = NULL;
+		_count --;
+
+#ifdef DEBUG
+	printf("[Debug] m_delete \n");
+#endif
+
+}
+
 char* m_to_string(T_Dorm* p) {
 	static char str[80];
 	sprintf(str, "%s / %s / %s / %d학번 / %s", p->name, p->gender, p->building, p->studentNumber, p->major);

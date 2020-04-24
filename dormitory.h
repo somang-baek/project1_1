@@ -18,8 +18,8 @@ int m_count();
 
 void m_create(char* n, char* g, char* b, int sn, char* m);
 T_Dorm* m_search_by_name(char* n);
-
-
+void m_update(T_Dorm* p, char*g, char*b, int sn, char* m);
+void m_delete(T_Dorm* p);
 void m_get_all(T_Dorm* a[]); // 회원정보가 들어있는 모든 레코드 포인터의 배열을 만들기
 
 char* m_to_string(T_Dorm* p);
